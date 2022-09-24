@@ -36,7 +36,6 @@ body{
 .form-control{
     display: flex;
     flex-direction: column;
-    background-color: rgb(176, 176, 236);
 }
 
 @media screen and (min-width: 600px) {
