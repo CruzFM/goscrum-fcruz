@@ -1,0 +1,1 @@
+export const Error404 = () => <div> Page doesn't exist.</div>
