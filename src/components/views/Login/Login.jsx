@@ -1,5 +1,6 @@
 import { Formik, Field, Form, FormikProps, validateYupSchema, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import { useNavigate } from 'react-router-dom'
 
 export const Login = () => {
 
@@ -12,6 +13,8 @@ export const Login = () => {
       .required('Password is required, jerk')
   });
 
+  const navigate = useNavigate()
+
   return (
     <div className="container">
       <h1>Login here</h1>
@@ -20,8 +23,10 @@ export const Login = () => {
         initialValues={ {email: '', password: ''} }
         validationSchema={LoginSchema}
         onSubmit={ (event, values) =>{ 
-          event.preventDefault()
-          console.log(values) }
+          // event.preventDefault()
+          localStorage.setItem("logged", "yes")
+          navigate('/')
+        }
         }
       >
         {
