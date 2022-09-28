@@ -1,4 +1,5 @@
 import { Route, Routes, Navigate } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion';
 
 import './App.css';
 import { Login }  from './components/views/Login/Login'
@@ -15,17 +16,19 @@ const RequireAuth = ({children}) =>{
 
 export const App = () => 
     (
-        <Routes> 
-            <Route 
-                path='/' 
-                element={
-                    <RequireAuth>
-                        <Tasks />
-                    </RequireAuth>
-                } 
-            />
-            <Route path='/login' element={<Login />} />
-            <Route path='/*' element={<Error404 />} />
-            {/* <Register /> */}
-        </Routes>
+        <AnimatePresence>
+            <Routes> 
+                <Route 
+                    path='/' 
+                    element={
+                        <RequireAuth>
+                            <Tasks />
+                        </RequireAuth>
+                    } 
+                />
+                <Route path='/login' element={<Login />} />
+                <Route path='/*' element={<Error404 />} />
+                {/* <Register /> */}
+            </Routes>
+        </AnimatePresence>
     )
