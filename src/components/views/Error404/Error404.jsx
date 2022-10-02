@@ -1,1 +1,1 @@
-export const Error404 = () => <div> Page doesn't exist.</div>
+export default function Error404() {return (<div> Page doesn't exist.</div>)} 
