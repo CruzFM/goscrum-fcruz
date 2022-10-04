@@ -1,15 +1,15 @@
-export const Card = () => {
+export const Card = ( {data: {title, dateTime, creator, description, type, priority }} ) => {
   return (
     <div className="card">
       <div className="close">x</div>
-      <h3>Tarea 1</h3>
-      <h6>24/03/2022 12:12 hs.</h6>
-      <h5>Facundo Uferer</h5>
+      <h3>{title}</h3>
+      <h6>{dateTime}</h6>
+      <h5>{creator}</h5>
       <div className="card--btn">
-        <button type="button">Nueva</button>
-        <button type="button">Alta</button>
+        <button type="button">{type}</button>
+        <button type="button">{priority}</button>
       </div>
-      <p>Descripción lorem</p>
+      <p>{description}</p>
     </div>
   );
 };
