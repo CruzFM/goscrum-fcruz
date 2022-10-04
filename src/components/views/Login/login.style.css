@@ -1,4 +1,4 @@
-.container{
+.auth{
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@
     width: 90%;
 }
 
-.container > form{
+.auth > form{
     width: 100%;
     padding: 20px;
     display: flex;
@@ -17,7 +17,7 @@
     flex-direction: column;
 }
 
-.container > form > div{
+.auth > form > div{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -25,8 +25,22 @@
     padding: 5px 0;
 }
 
-.container > form > div >*:not(label){
+.auth > form > div >*:not(label){
     padding: 8px 5px;
+    border-radius: var(--global-radius);
+}
+
+.auth > form > button {
+    padding: 8px 5px;
+    background-color: white;
+    border-radius: var(--global-radius);
+    border: var(--global-border);
+}
+
+.auth > form > button:hover{
+    border: none;
+    background-color: var(--global-primary-color);
+    color: white;
 }
 
 .form-control{
@@ -39,9 +53,9 @@
     font-size: 13px;
 }
 @media screen and (min-width: 600px) {
-    .container > form {
+    .auth > form {
         width: 400px;
-        border: 1px solid #999;
+        border: 0.5px solid #999;
         border-radius: 8px;
         background-color: white;
         box-shadow: 10px 17px 34px 0px rgba(173,163,163,0.75);
