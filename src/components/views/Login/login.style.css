@@ -1,0 +1,51 @@
+.container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.container > form{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.container > form > div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    padding: 5px 0;
+}
+
+.container > form > div >*:not(label){
+    padding: 8px 5px;
+}
+
+.form-control{
+    display: flex;
+    flex-direction: column;
+}
+
+.errors{
+    color: red;
+    font-size: 13px;
+}
+@media screen and (min-width: 600px) {
+    .container > form {
+        width: 400px;
+        border: 1px solid #999;
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 10px 17px 34px 0px rgba(173,163,163,0.75);
+        -webkit-box-shadow: 10px 17px 34px 0px rgba(173,163,163,0.75);
+        -moz-box-shadow: 10px 17px 34px 0px rgba(173,163,163,0.75);
+    }
+}

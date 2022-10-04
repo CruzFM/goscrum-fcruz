@@ -1,1 +1,10 @@
-export const Tasks= ()=> <div>Tasks, here.</div>
+import { Header } from '../../Header/Header'
+
+export const Tasks= ()=> {
+    return(
+        <>
+            <Header />
+            <div>Tasks, here.</div>
+        </>
+
+    )}

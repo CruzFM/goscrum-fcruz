@@ -1,3 +1,5 @@
+import './login.style.css'
+
 import { Formik, Field, Form, FormikProps, validateYupSchema, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
@@ -40,7 +42,7 @@ export const Login = () => {
                   placeholder='example@example.com'
 
                 />
-                {errors.email && touched.email && <div>{errors.email}</div>}
+                {errors.email && touched.email && <div className='errors'>{errors.email}</div>}
               </div>
               <div className='form-control'>
                 <label htmlFor='password'>Password</label>
@@ -49,7 +51,7 @@ export const Login = () => {
                   name='password'
                   placeholder='Password'
                 />
-                {errors.password && touched.password && <div>{errors.password}</div>}
+                {errors.password && touched.password && <div className='errors'>{errors.password}</div>}
               </div>
               <button 
                 type='submit'
