@@ -27,6 +27,10 @@
     font-size: 13px;
 }
 
+.error-field{
+    border: 1px red solid;
+}
+
 .taskForm > form > button{
     border: 0.5px solid rgb(237, 125, 125);
     background-color: white;
