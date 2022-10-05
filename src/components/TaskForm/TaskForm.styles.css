@@ -1,0 +1,16 @@
+.taskForm {
+    width: 300px;
+    margin: 0 auto;
+    padding-top: 15px;
+}
+
+.taskForm > form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    /* width: 50%; */
+}
+
+.taskForm > form > input, select, button{
+    padding: 5px;
+}

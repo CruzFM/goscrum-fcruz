@@ -4,6 +4,7 @@ import { Header } from '../../Header/Header';
 import { useResize } from '../../../hooks/useResize';
 import { Card } from '../../Card/Card'
 import { cardsData } from './data';
+import { TaskForm } from '../../TaskForm/TaskForm';
 
 export const Tasks= ()=> {
 
@@ -17,6 +18,7 @@ export const Tasks= ()=> {
         <>
             <Header />
             <main>
+                <TaskForm />
                 <section className='wrapper_list'>
                     <div className='list_header'>
                         <h2>Mis Tareas</h2>

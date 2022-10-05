@@ -45,3 +45,11 @@
     background-color: red;
     color: white;
 }
+
+.list_header{
+    padding: 12px 0;
+
+}
+.list_header > h2{
+    text-align: center;
+}
