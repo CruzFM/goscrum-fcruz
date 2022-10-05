@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 export const Login = () => {
   const LoginSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Invalid email addres format")
+      .email("Invalid email address format")
       .required("Email is required"),
     password: Yup.string()
       .min(3, "Password must be 3 characters at minimum")
