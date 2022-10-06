@@ -1,5 +1,6 @@
 import '../Auth.style.css';
 
+import { useState, useEffect } from 'react';
 import { Formik, Field, Form, FormikProps, validateYupSchema, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -23,6 +24,17 @@ export const Register = () => {
         .required('*Your region is required'),
     });
 
+    const [data, setData] = useState();
+
+    useEffect( ()=> {
+      const endPoint = 'https://goscrum-api.alkemy.org/auth/data';
+      fetch(endPoint)
+        .then(res => res.json())
+        .then(data => {
+          setData(data.result);
+        })
+    }, [])
+
     return (
       <div className="auth">
         <h1>Register here</h1>
@@ -36,7 +48,7 @@ export const Register = () => {
           }
         >
           {
-            ({touched, errors, isSubmitting, handleBlur}) =>(
+            ({touched, errors, isSubmitting, handleBlur, values}) =>(
               <Form>
                 <div className='form-control'>
                   <label htmlFor='name'>User Name</label>
@@ -45,7 +57,7 @@ export const Register = () => {
                     name='name'
                     placeholder='User Name.'
                     onBlur={handleBlur}
-                    className={errors.name ? 'error-field' : ''}
+                    className={errors.name  && touched.name ? 'error-field' : ''}
                   />
                   {errors.name && touched.name && <div className='errors'>{errors.name}</div>}
                 </div>
@@ -56,7 +68,7 @@ export const Register = () => {
                     name='password'
                     placeholder='Password.'
                     onBlur={handleBlur}
-                    className={errors.password ? 'error-field' : ''}
+                    className={errors.password && touched.password ? 'error-field' : ''}
                   />
                   {errors.password && touched.password && <div className='errors'>{errors.password}</div>}
                 </div>
@@ -67,7 +79,7 @@ export const Register = () => {
                     name='email'
                     placeholder='Email.'
                     onBlur={handleBlur}
-                    className={errors.email ? 'error-field' : ''}
+                    className={errors.email && touched.email ? 'error-field' : ''}
                   />
                   {errors.email && touched.email && <div className='errors'>{errors.email}</div>}
                 </div>
@@ -77,11 +89,10 @@ export const Register = () => {
                     as='select'
                     name='role'
                     onBlur={handleBlur}
-                    className={errors.role ? 'error-field' : ''}
+                    className={errors.role && touched.role ? 'error-field' : ''}
                   >
                     <option value="">Select your option</option>
-                    <option value="Team Member">Team member</option>
-                    <option value="Team Leader">Team Leader</option>
+                    {data?.Rol?.map(role => <option value={role} key={role}>{role}</option>)}
                   </Field>
                   {errors.role && touched.role && <div className='errors'>{errors.role}</div>}
                 </div>
@@ -91,32 +102,30 @@ export const Register = () => {
                     as='select'
                     name='continent'
                     onBlur={handleBlur}
-                    className={errors.continent ? 'error-field' : ''}
+                    className={errors.continent  && touched.continent ? 'error-field' : ''}
                   >
                     <option value="">Select your Continent</option>
-                    <option value="America">America</option>
-                    <option value="Europe">Europe</option>
-                    <option value="Asia">Asia</option>
-                    <option value="Africa">Africa</option>
+                    {data?.continente?.map(continent => <option value={continent} key={continent}>{continent}</option>)}
                   </Field>
                   {errors.continent && touched.continent && <div className='errors'>{errors.continent}</div>}
                 </div>
-                <div className='form-control'>
-                  <label htmlFor='region'>Region</label>
-                  <Field 
-                    as='select'
-                    name='region'
-                    onBlur={handleBlur}
-                    className={errors.region ? 'error-field' : ''}
-                  >
-                    <option value="">Select your region</option>
-                    <option value="Latam">Latam</option>
-                    <option value="East Europe">East Europe</option>
-                    <option value="Brasil">Brasil</option>
-                    <option value="Another">Another</option>
-                  </Field>
-                  {errors.region && touched.region && <div className='errors'>{errors.region}</div>}
-                </div>
+
+                {
+                  values.continent === 'America' &&
+                  (<div className='form-control'>
+                    <label htmlFor='region'>Region</label>
+                    <Field 
+                      as='select'
+                      name='region'
+                      onBlur={handleBlur}
+                      className={errors.region && touched.region ? 'error-field' : ''}
+                    >
+                      <option value="">Select your region</option>
+                      {data?.region?.map(place => <option value={place} key={place}>{place}</option>)}
+                    </Field>
+                    {errors.region && touched.region && <div className='errors'>{errors.region}</div>}
+                  </div>)
+                }
                 
                 <button 
                   type='submit'
