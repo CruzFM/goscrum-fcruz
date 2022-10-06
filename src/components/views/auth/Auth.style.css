@@ -52,6 +52,11 @@
     color: red;
     font-size: 13px;
 }
+
+.error-field{
+    border: 1px red solid;
+}
+
 @media screen and (min-width: 600px) {
     .auth > form {
         width: 400px;

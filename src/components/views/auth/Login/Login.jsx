@@ -1,4 +1,4 @@
-import "./login.style.css";
+import "../Auth.style.css";
 
 import {
   Formik,
@@ -9,7 +9,7 @@ import {
   ErrorMessage,
 } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const LoginSchema = Yup.object().shape({
@@ -44,6 +44,7 @@ export const Login = () => {
                 type="email"
                 name="email"
                 placeholder="example@example.com"
+                className={errors.title ? 'error-field' : ''}
               />
               {errors.email && touched.email && (
                 <div className="errors">{errors.email}</div>
@@ -51,7 +52,11 @@ export const Login = () => {
             </div>
             <div className="form-control">
               <label htmlFor="password">Password</label>
-              <Field type="password" name="password" placeholder="Password" />
+              <Field 
+                type="password" 
+                name="password" 
+                placeholder="Password"  
+                className={errors.title ? 'error-field' : ''}/>
               {errors.password && touched.password && (
                 <div className="errors">{errors.password}</div>
               )}
@@ -59,6 +64,10 @@ export const Login = () => {
             <button type="submit" disabled={isSubmitting}>
               Submit
             </button>
+            <div>
+              <h6>Don't have an account yet?</h6>
+              <Link to='/register'>Register here</Link>
+            </div>
           </Form>
         )}
       </Formik>

@@ -3,12 +3,11 @@ import { Route, Routes, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion';
 
 import './App.css';
-import { Login }  from './components/views/Login/Login'
+import { Login }  from './components/views/auth/Login/Login'
 import { Tasks } from './components/views/Tasks/Tasks';
-// import { Error404 } from './components/views/Error404/Error404';
-const Error404 = lazy( ()=> import('./components/views/Error404/Error404') )
-// import { Register } from './components/Register'
+import { Register } from './components/views/auth/Register/Register';
 
+const Error404 = lazy( ()=> import('./components/views/Error404/Error404') )
 
 const RequireAuth = ({children}) =>{
     if (!localStorage.getItem('logged')){
@@ -79,7 +78,20 @@ export const App = () =>{
               </motion.div>
             }
           />
-          {/* <Register /> */}
+          <Route
+            path="/register"
+            element={
+              <motion.div
+                className="page"
+                initial="out"
+                animate="in"
+                exit="out"
+                variants={pageTransition}
+              >
+                <Register />
+              </motion.div>
+            }
+          />
         </Routes>
       </AnimatePresence>
     );
