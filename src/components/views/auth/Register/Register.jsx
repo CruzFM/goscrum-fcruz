@@ -200,7 +200,7 @@ export const Register = () => {
                     name="region"
                     onBlur={handleBlur}
                     onChange={handleChange}
-                    value={values.password}
+                    value={values.region}
                     className={
                       errors.region && touched.region ? "error-field" : ""
                     }
