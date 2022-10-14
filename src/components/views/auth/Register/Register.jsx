@@ -2,11 +2,15 @@ import '../Auth.style.css';
 
 import { useState, useEffect } from 'react';
 import { Formik, Field, Form, FormikProps, validateYupSchema, ErrorMessage } from 'formik';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Switch, FormControlLabel } from '@mui/material';
+import { v4 as uuidv4 } from 'uuid';
 
 export const Register = () => {
+
+    const navigate = useNavigate();
+
     const LoginSchema = Yup.object().shape({
       name: Yup.string()
         .required('*Name is required')
@@ -36,10 +40,11 @@ export const Register = () => {
         })
     }, []);
     
-    const handleChangeContinent = (value, setFieldValue) => {
-      setFieldValue('continent', value)
+    const handleChangeContinent = (value, setValue) => {
+      setValue('continent', value)
+      console.log(value)
       if(value !== 'America'){
-        setFieldValue('region', 'otro')
+        setValue('region', 'otro')
       }
     }
 
@@ -60,9 +65,26 @@ export const Register = () => {
           }}
           validationSchema={LoginSchema}
           onSubmit={(values) => {
-            // event.preventDefault();
-            // console.log(values);
-            alert('hola Fer, lo lograste')
+            const teamID = !values.teamID ? uuidv4() : values.teamID;
+            fetch('https://goscrum-api.alkemy.org/auth/data', {
+              method: "POST",
+              headers:{
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                user:{
+                  name: values.name,
+                  password: values.password,
+                  email: values.email,
+                  teamID,
+                  role: values.role,
+                  continent: values.continent,
+                  region: values.region,
+                },
+              }),
+            })
+              .then(res=> res.json() )
+              .then(data=> navigate('/registered', {replace: true}) )
           }}
         >
           {({

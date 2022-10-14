@@ -6,6 +6,7 @@ import './App.css';
 import { Login }  from './components/views/auth/Login/Login'
 import { Tasks } from './components/views/Tasks/Tasks';
 import { Register } from './components/views/auth/Register/Register';
+import { Registered } from './components/views/Registered/Registered';
 
 const Error404 = lazy( ()=> import('./components/views/Error404/Error404') )
 
@@ -89,6 +90,20 @@ export const App = () =>{
                 variants={pageTransition}
               >
                 <Register />
+              </motion.div>
+            }
+          />
+          <Route 
+            path="/registered/"
+            element={
+              <motion.div
+                className="page"
+                initial="out"
+                animate="in"
+                exit="out"
+                variants={pageTransition}
+              >
+                <Registered />
               </motion.div>
             }
           />
